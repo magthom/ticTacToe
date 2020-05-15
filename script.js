@@ -1,47 +1,54 @@
-let cells = document.querySelectorAll('.row > div');
-
+const cells = document.querySelectorAll('div.row > div');
 for (let i = 0; i < cells.length; i++) {
-    cells[i].addEventListener('click' , cellClicked);
+  cells[i].addEventListener("click", cellClicked);
 }
 
-cells[0].textContent
+const wins = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+];
 
-function  cellClicked() {
-    event.target.textContent = 'X'
-    
+let play = "X";
+let gameWon = false;
+let numMoves = 0;
+
+function cellClicked() {
+  if (gameWon) {
+    return
+  }
+  if (event.target.textContent > " ") {
+    return
+  }
+  numMoves += 1;
+  event.target.textContent = play;
+  if (play === "X") {
+    play = 'O';
+  } else {
+    play = 'X';
+  }
+
+  for (let i = 0; i < wins.length; i++) {
+    if (cells[wins[i][0]].textContent === cells[wins[i][1]].textContent &&
+      cells[wins[i][1]].textContent === cells[wins[i][2]].textContent &&
+      (cells[wins[i][0]].textContent === "x" ||
+        cells[wins[i][0]].textContent === "o")) {
+      document.querySelector("h2").innerHTML = cells[wins[i][0]].textContent.toUpperCase() + " HAS WON THE GAME!";
+      gameWon = true;
+      document.querySelector("button").style.display = "block";
+    }
+  }
+  if (gameWon === false && numMoves === 9) {
+    document.querySelector("h2").innerHTML = "CAT! PLAY AGAIN!";
+    document.querySelector("button").style.display = "block";
+  }
 }
 
-
-cells[0].textContent
-//===
-//if else statements
-//else if 
-// if(conditionOne && , || conditionTwo ) {}
-
-
-
-
-
-
-
-// console.log(cells);
-
-// for (let i = 0; i < cells.length; i++) {
-//     cells[i].addEventListener('click', cellClicked);
-// }
-
-// function cellClicked() {
-//     event.target.textContent = "X";
-// }
-
-// let playerOne = 0;
-// function displayInput(square){ 
-//     if ( playerOne == 1 ){
-//         document.getElementById(square).innerHTML = "X";
-//         playerOne = 0;
-//     } else {
-//         document.getElementById(square).innerHTML = "O";    
-//         playerTwo = 1;
-//     }   
-// }
-// displayInput();
+function restartGame() {
+  document.location.reload();
+}
