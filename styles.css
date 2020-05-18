@@ -8,13 +8,14 @@ button {
     justify-content: center;
     font-family: monospace;
     font-size: large;
-    background-color: red;
+    background-color: lightseagreen;
     font-weight: bold;
 }
 
 h1 {
     text-align: center;
     font-family: monospace;
+    color: lightseagreen;
 }
 div.row > div {
     float: left;
@@ -34,21 +35,21 @@ div.row > div {
 }
 
 .top {
-    border-bottom: 1px black solid;
+    border-bottom: 1px olivedrab solid;
 }
 
 .bottom {
-    border-top: 1px black solid;
+    border-top: 1px olivedrab solid;
 }
 
 .left {
-    border-right: 1px blue solid;
+    border-right: 1px lightseagreen solid;
 }
 
 .right {
-    border-left: 1px blue solid;
+    border-left: 1px lightseagreen solid;
 } 
 h2 {
     text-align: center;
-    color: salmon;
+    color: lightseagreen;
 }
